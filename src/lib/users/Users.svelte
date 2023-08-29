@@ -1,11 +1,12 @@
 <script>
 	import { tweened } from 'svelte/motion';
-	import { cubicIn } from 'svelte/easing';
+	import { cubicIn, quintOut } from 'svelte/easing';
 	import { users, remove, addNewUser } from '../../Store';
 	import FilterUser from '../FilterUser/FilterUser.svelte';
 	import NewUser from '../NewUser/NewUser.svelte';
 	import SingleUser from '../SingleUser/SingleUser.svelte';
 	import { onMount } from 'svelte';
+	import { flip } from 'svelte/animate';
 
 	$: filterdUsers = $users;
 
@@ -39,7 +40,9 @@
 	<progress max="10" min="0" value={$progress} class="w-full mx-4" />
 	<div>
 		{#each filterdUsers as user, i (user.id)}
-			<SingleUser on:remove={remove} {i} {user} />
+			<div animate:flip={{ delay: 250, duration: 1000, easing: quintOut }}>
+				<SingleUser on:remove={remove} {i} {user} />
+			</div>
 		{:else}
 			<p>No Users To Be Shown</p>
 		{/each}
