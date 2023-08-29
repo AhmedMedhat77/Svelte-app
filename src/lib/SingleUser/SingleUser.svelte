@@ -1,16 +1,20 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
-
+	import { slide, fly } from 'svelte/transition';
+	// defining the props
 	export let user;
 	export let i;
+	// distructing props from user prop
 	export let { userName, userEmail, image, id } = user;
 	const dispatch = createEventDispatcher();
+	// dispatching event to be custom function prop
 	const remove = () => {
 		dispatch('remove', id);
 	};
 </script>
 
 <div
+	transition:fly={{ duration: 500, x: 200 }}
 	class="flex items-center m-5 bg-white border p-2 rounded-lg shadow-md hover:shadow-lg cursor-pointer relative"
 >
 	<button
