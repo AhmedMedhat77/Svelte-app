@@ -9,6 +9,7 @@
 
 <section>
 	<Users />
+	<a href="/about">About</a>
 	<!-- <Counter /> -->
 </section>
 
